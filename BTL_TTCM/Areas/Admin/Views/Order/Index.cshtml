@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BTL_TTCM.Models.Order>
+
+@{
+    ViewData["Title"] = "Order";
+    Layout = "~/Areas/Admin/Views/Shared/Layout_Admin.cshtml";
+}
+
+<div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Order</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">List of order in the system</li>
+                        </ol>
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Order table
+                            </div>
+                            <div class="card-body">
+                                
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>OrderID</th>
+                                            <th>Date create</th>
+                                            <th>Customer</th>                                         
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var i in Model)
+                                       {
+                                            <tr>
+                                                <td>@i.OrderId</td>
+                                                <td>@i.dateCreate</td>
+                                                <td>@i.Username</td>                                                                                           
+                                                <td>                                                   
+                                                    <a href="@Url.ActionLink("Detail","Order",new {id=@i.OrderId})">
+                                                        <input type="button" class="btn btn-info w-10 bg-success" value="Detail"/>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                       }
+                                        
+                                     
+                                    </tbody>
+                                </table>                              
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<BTL_TTCM.Models.Category>
+
+@{
+    ViewData["Title"] = "Category";
+    Layout = "~/Areas/Admin/Views/Shared/Layout_Admin.cshtml";
+}
+
+<div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Category</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">List of Category in the system</li>
+                        </ol>
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Category table
+                            </div>
+                            <div class="card-body">
+                                
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>Category ID</th>
+                                            <th>Category Name</th>                                        
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var i in Model)
+                                       {
+                                            <tr>
+                                                <td>@i.CatId</td>
+                                                <td>@i.CatName</td>                                                                                                                                 
+                                                <td>                                                   
+                                                    <a href="@Url.ActionLink("Edit","Category",new {id=@i.CatId})">
+                                                        <input type="button" class="btn btn-info w-10 bg-warning" value="Edit"/>
+                                                    </a> 
+                                                    <a href="@Url.ActionLink("Delete","Category",new {id=@i.CatId})">
+                                                        <input type="button" class="btn btn-info w-10 bg-danger" value="Delete"/>
+                                                    </a> 
+                                                </td>
+                                            </tr>
+                                       }
+                                        
+                                     
+                                    </tbody>
+                                </table>
+                                <a href="/admin/Category/Create">
+                                    <button type="submit" class="btn btn-primary">Create</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>

@@ -1,0 +1,35 @@
+﻿@model BTL_TTCM.Models.Category
+@{
+    ViewData["Title"] = "Category";
+    Layout = "~/Areas/Admin/Views/Shared/Layout_Admin.cshtml";
+}
+
+<div id="layoutSidenav_content">
+    <main>
+        <h2>Are you want to delete this category?</h2>
+    
+            <table class="table table-border ">
+                <thead>                  
+                     <tr>
+                       <th>CatID</th>
+                       <th>@Model.CatId</th>
+                     <tr/>
+                     <tr>
+                       <th>Category name</th>
+                       <th>@Model.CatName</th>
+                     <tr/>                                                                      
+                </thead>
+            </table>
+
+             <div class="col-8 offset-3 row">
+
+                        <div class="col-3">
+                            <a href="@Url.ActionLink("DeleteConfirm","Category",new {id=@Model.CatId})"><input type="submit" class="btn btn-info w-100" value="Delete"/></a>
+                        </div>
+                        <div class="col-3">
+                             <a href="/admin/Category/Index" class="btn btn-success w-100"><i class="fas fa-sign-out-alt"></i> Back</a>
+                        </div>
+           </div>    
+       
+    </main>
+</div>

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<BTL_TTCM.Models.User>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Layout_Admin.cshtml";
+}
+
+<!-- MainLayOut -->
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Dashboard</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">Dashboard</li>
+                        </ol>
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                DataTable Account
+                            </div>
+                            <div class="card-body">
+                                
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>FullName</th>
+                                            <th>Role</th>
+                                            <th>Email address</th>
+                                            <th>PhoneNumber</th>                                           
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var i in Model)
+                                       {
+                                           <tr>
+                                                <td>@i.FullName</td>
+                                                <td>@i.Role</td>
+                                                <td>@i.Email</td>
+                                                <td>@i.PhoneNumber</td>                                                                                 
+                                           </tr> 
+                                       }
+                                                                         
+                                    </tbody>
+                                </table>                              
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+<!-- EndMainLayOut -->
+

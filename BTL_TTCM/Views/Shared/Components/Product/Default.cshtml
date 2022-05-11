@@ -1,0 +1,37 @@
+﻿@using Microsoft.AspNetCore.Http
+@model IEnumerable<BTL_TTCM.Models.Product>
+
+
+<div class="row">
+		@foreach (var i in Model)
+	   {
+		   <div class="product-layout product-grid col-lg-4 col-md-4 col-sm-6 col-xs-12">
+				<div class="product-thumb">
+					<div class="image">
+						<a class="" href="@Url.ActionLink("ProductDetail","Category",new {id=@i.ProductId})"><img src="https://res.cloudinary.com/dzzivs123/image/upload/v1651677533/images/product/@i.Image" alt="image" title="image" class="img-fluid" /></a>
+								
+						<div class="onhover">
+							<ul class="list-inline">
+							@if (Context.Session.GetString("UserName") == null)
+							{
+								<li><a href="/User/Login"><i class="fa fa-shopping-cart"></i> Add to cart</a></li>
+								<li><a href="#"><i class="fa fa-heart"></i></a></li>	
+							}
+							else
+							{
+								<li><a href="@Url.ActionLink("AddCart","Home",new {id=@i.ProductId,sl=1})"><i class="fa fa-shopping-cart"></i> Add to cart</a></li>
+								<li><a href="#"><i class="fa fa-heart"></i></a></li>							
+							
+							}
+							</ul>
+						</div>
+					</div>
+					<div class="caption">
+						<h4><a href="#">@i.ProductName</a></h4>
+						<p class="price"> @i.oriprice</p>																
+					</div>
+				</div>	
+		</div>
+	   }				
+	</div>
+

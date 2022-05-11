@@ -1,0 +1,59 @@
+﻿@model IEnumerable<BTL_TTCM.Models.User>
+
+@{
+    ViewData["Title"] = "Account";
+    Layout = "~/Areas/Admin/Views/Shared/Layout_Admin.cshtml";
+}
+
+<div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Account</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">List of user accounts in the system</li>
+                        </ol>
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Account table
+                            </div>
+                            <div class="card-body">
+                                
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>User name</th>
+                                            <th>Full name</th>
+                                            <th>Role</th>
+                                            <th>Email address</th>
+                                            <th>Phone number</th>                                         
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach(var i in Model){
+                                            <tr>
+                                                <td>@i.UserName</td>
+                                                <td>@i.FullName</td>
+                                                <td>@i.Role</td>
+                                                <td>@i.Email</td>
+                                                <td>@i.PhoneNumber</td>
+                                                <td>                                                                                                     
+                                                    <a href="@Url.ActionLink("Edit","Account",new {username=@i.UserName})">
+                                                        <input type="button" class="btn btn-info w-10 bg-warning" value="Edit"/>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                       }
+                                    </tbody>
+                                </table>
+                                <a href="/admin/Account/Create">
+                                    <button type="submit" class="btn btn-primary">Create</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+

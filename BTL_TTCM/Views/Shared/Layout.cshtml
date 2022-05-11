@@ -1,0 +1,326 @@
+﻿@using Microsoft.AspNetCore.Http
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!-- Mirrored from www.ocsolutions.co.in/html/organic_food/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Apr 2022 09:58:46 GMT -->
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Organic Food and Fruit Html Template</title>
+<!-- Bootstrap stylesheet -->
+<link href="~/lib/bootstrap4/css/bootstrap.min.css" rel="stylesheet">
+<!-- crousel css -->
+<link href="~/js/owl-carousel/owl.carousel.min.css" rel="stylesheet" type="text/css" />
+<!--bootstrap select-->
+<link href="~/js/dist/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
+<!-- font -->
+<link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500,600,700,800,900%7CPT+Serif:400,700" rel="stylesheet"> 
+<!-- font-awesome -->
+<link href="~/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link href="~/css/ele-style.css" rel="stylesheet" type="text/css"/>
+<!-- stylesheet -->
+<link href="~/css/style.css" rel="stylesheet" type="text/css"/>
+<link href="~/css/style_cyan.css" title="style_cyan" rel="alternate stylesheet" type="text/css"/>
+<link href="~/css/style_red.css" title="style_red" rel="alternate stylesheet" type="text/css"/>
+<link href="~/css/style_green.css" title="style_green" rel="alternate stylesheet" type="text/css"/>
+<link href="~/css/style_blue.css" title="style_blue" rel="alternate stylesheet" type="text/css"/>
+</head>
+<body class="header3">
+<!--top start here -->
+<div class="top">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+				<ul class="list-inline float-left icon icons">
+					
+										
+				</ul>	
+				<ul class="list-inline float-right  icons">
+					<li class="dropdown login">
+						 @if(Context.Session.GetString("UserName")!=null){						
+							 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon_profile"></i>
+								@Context.Session.GetString("FullName")
+							</a>
+							<ul class="dropdown-menu">		
+																										
+								<li>
+									<button class="btn" type="button" onclick="location.href='/User/Logout'">Logout</button>
+								</li>
+							</ul>
+						 }
+						 else{
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon_profile"></i>
+								My Account
+							</a>
+							<ul class="dropdown-menu">															
+								<li class="des text-center">If you are a new user</li>
+								<li class="text-center">
+									<a href="/User/SignUp">Register Now</a>
+								</li>
+								<li>
+									<button class="btn" type="button" onclick="location.href='/User/Login'">Login</button>
+								</li>
+							</ul>
+						 }					
+					</li>					
+				
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!--top end here -->
+
+<!-- header start here-->
+<header>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
+				<div id="logo">
+					<a href="/Home/Index">
+						<img class="img-fluid logochange" src="https://res.cloudinary.com/dzzivs123/image/upload/v1651677522/images/header3/logo_dkvy7a.png" alt="logo" title="logo" />
+					</a>
+				</div>
+			</div>
+			<div class="col-md-7 col-sm-7 col-lg-7 col-xs-12">
+				<!-- menu start here -->
+				<div id="menu">	
+					<nav class="navbar navbar-expand-sm">
+						<span class="menutext visible-xs">Menu</span>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars" aria-hidden="true"></i>
+						<span class="navbar-toggler-icon"></span>
+						</button>
+
+						<div class="collapse navbar-collapse padd0" id="navbarmain">
+							<ul class="nav navbar-nav float-right">
+								<li class="dropdown topheader">
+									<a href="/Home/index" class="dropdown-toggle" >Home</a>									
+								</li>
+								
+								<li class="dropdown topheading">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Shop</a>
+									<div class="dropdown-menu">
+										<div class="dropdown-inner">
+											<ul class="list-unstyled">
+												<li>
+													<a href="/Category/RenderCat">Shop</a>
+												</li>												
+												<li>
+													@if(Context.Session.GetString("UserName")!=null){
+														<a href="/Home/ShopCart">Shopping cart</a>
+													}
+													else
+													{
+														<a href="/User/Login">Shopping cart</a>
+													}
+														
+												</li>																																		
+											</ul>
+										</div>
+									</div>
+								</li>																						
+								<li>
+									<a href="/Home/RenderContactUs">Contact us</a>
+								</li>
+							</ul>
+						</div>
+					</nav>
+				</div>
+				<!-- menu end here -->
+			</div>
+			<div class="col-md-2 col-sm-2 col-lg-2 col-xs-12">
+				
+			</div>
+		</div>
+	</div>
+</header>
+<!-- header end here -->
+
+@RenderBody()
+
+<!-- footer start here -->
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3 col-md-3 col-lg-3 col-xs-12">
+				<div class="inner">
+					<img src="https://res.cloudinary.com/dzzivs123/image/upload/v1651677521/images/header3/footer-logo_hiehv0.png" class="img-fluid" title="logo" alt="logo">
+					<p class="text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam congue quis quam eget efficitur. Vestibulum venenatis tortor ipsum, at venenatis tellus aliquet eu. Orci varius natoque penatibus...</p>
+					<ul class="list-unstyled contact">
+						<li>
+							<a href="contactus.html">
+								<i class="fa fa-map-marker"></i> No 60 Lorem Street 6/2 Ludhiana city, India.
+							</a>
+						</li>
+						<li>
+							<a href="contactus.html">
+								<i class="icon_phone"></i> Phone - +123 456 7890
+							</a>
+						</li>
+						<li>
+							<a href="contactus.html">
+								<i class="fa fa-envelope"></i> Email - organicfoods@gmail.com
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-9 col-sm-9 col-lg-9 col-xs-12">
+				<div id="newsletter">
+					
+				</div>
+				<div class="row">
+					<div class="col-sm-3 col-md-3 col-lg-3 col-xs-12 cat">
+						<h5>Stay Connected</h5>
+						<hr>
+						<ul class="list-unstyled social">
+							<li>
+								<a href="https://www.facebook.com/" target="_blank">
+									<i class="social_facebook"></i> Facebook
+									</a>
+									</li>
+							<li>
+								<a href="https://twitter.com/" target="_blank">
+									<i class="social_twitter"></i> Twitter
+								</a>
+							</li>
+							<li>
+								<a href="https://plus.google.com/" target="_blank">
+									<i class="social_googleplus"></i> Google+
+								</a>
+							</li>
+							<li>
+								<a href="https://www.youtube.com/" target="_blank">
+									<i class="social_youtube"></i> Youtube
+								</a>
+							</li>
+							<li>
+								<a href="https://in.linkedin.com/" target="_blank">
+									<i class="social_linkedin"></i> Linked In
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-sm-2 col-md-2 col-lg-2 col-xs-12 cat">
+						<h5>Categories</h5>
+						<hr>
+						<ul class="list-unstyled">
+							<li>
+								<a href="#">Vegetables</a>
+							</li>
+							<li>
+								<a href="#">Fruits</a>
+							</li>
+							<li>
+								<a href="#">Meats</a>
+							</li>
+							<li>
+								<a href="#">Organic Foods</a>
+							</li>
+							<li>
+								<a href="#">Others</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-sm-3 col-md-3 col-lg-3 col-xs-12 cat">
+						<h5>my account</h5>
+						<hr>
+						<ul class="list-unstyled">
+							<li>
+								<a href="login_register.html">My Account</a>
+							</li>
+							<li>
+								<a href="#">Discount</a>
+							</li>
+							<li>
+								<a href="#">Person information</a>
+							</li>
+							<li>
+								<a href="#">Order History</a>
+							</li>
+							<li>
+								<a href="#">Wishlist</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-sm-4 col-md-4 col-lg-4 col-xs-12">
+						<h5>portfolio</h5>
+						<hr>
+						<ul class="list-inline port">
+							<li>
+								<img src="https://res.cloudinary.com/dzzivs123/image/upload/v1651677522/images/header3/port1_keavcz.png" class="img-fluid" alt="img" title="img" />
+							</li>
+							<li>
+								<img src="https://res.cloudinary.com/dzzivs123/image/upload/v1651677522/images/header3/port1_keavcz.png" class="img-fluid" alt="img" title="img" />
+							</li>
+							<li>
+								<img src="https://res.cloudinary.com/dzzivs123/image/upload/v1651677522/images/header3/port1_keavcz.png" class="img-fluid" alt="img" title="img" />
+							</li>
+							<li>
+								<img src="https://res.cloudinary.com/dzzivs123/image/upload/v1651677522/images/header3/port1_keavcz.png" class="img-fluid" alt="img" title="img" />
+							</li>
+							<li>
+								<img src="https://res.cloudinary.com/dzzivs123/image/upload/v1651677522/images/header3/port1_keavcz.png" class="img-fluid" alt="img" title="img" />
+							</li>
+							<li>
+								<img src="https://res.cloudinary.com/dzzivs123/image/upload/v1651677522/images/header3/port1_keavcz.png" class="img-fluid" alt="img" title="img" />
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="powered">
+		<div class="container">
+			<div class="row">
+			
+				<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12 text-center">
+					<ul class="list-inline">
+						<li>
+							<img src="https://res.cloudinary.com/dzzivs123/image/upload/v1651677541/images/card1_beudhv.png" class="img-fluid" alt="card" title="card" />
+						</li>
+						<li>
+							<img src="https://res.cloudinary.com/dzzivs123/image/upload/v1651677536/images/card5_qlorfw.png" class="img-fluid" alt="card" title="card" />
+						</li>
+						<li>
+							<img src="https://res.cloudinary.com/dzzivs123/image/upload/v1651677541/images/card1_beudhv.png" class="img-fluid" alt="card" title="card" />
+						</li>
+						<li>
+							<img src="https://res.cloudinary.com/dzzivs123/image/upload/v1651677536/images/card5_qlorfw.png" class="img-fluid" alt="card" title="card" />
+						</li>
+						<li>
+							<img src="https://res.cloudinary.com/dzzivs123/image/upload/v1651677541/images/card1_beudhv.png" class="img-fluid" alt="card" title="card" />
+						</li>
+						<li>
+							<img src="https://res.cloudinary.com/dzzivs123/image/upload/v1651677536/images/card5_qlorfw.png" class="img-fluid" alt="card" title="card" />
+						</li>
+					</ul>
+				</div>
+			</div>	
+		</div>
+	</div>
+</footer>
+<!-- footer end here -->
+
+<!-- jquery -->
+<script src="~/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+<!-- bootstrap js -->
+
+<script src="~/js/popper.min.js" type="text/javascript"></script>
+<script src="~/lib/bootstrap4/js/bootstrap.min.js" type="text/javascript"></script>
+<!--bootstrap select-->
+<script src="~/js/dist/js/bootstrap-select.js"></script>
+<!--internal js-->
+<script src="~/js/owlinternal.js"></script>
+<script src="~/js/internal.js"></script>
+<!-- owlcarousel js -->
+<script src="~/js/holder.min.js" type="text/javascript"></script>
+<script src="~/js/owl-carousel/owl.carousel.min.js" type="text/javascript"></script>
+<script src="~/js/rangeslider.js"></script>	
+<script src="~/js/switcher.js"></script>
+</body>
+
+</html>

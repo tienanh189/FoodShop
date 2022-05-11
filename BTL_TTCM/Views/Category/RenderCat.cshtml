@@ -1,0 +1,45 @@
+﻿@model IEnumerable<BTL_TTCM.Models.Category>
+
+@{
+	ViewData["Title"] = "RenderProduct";
+	Layout = "~/Views/Shared/Layout.cshtml";
+	var idCat = 3;
+
+}
+
+<!-- shop container start here -->
+<div class="shop">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-3 col-md-3 col-lg-3 col-xs-12 hidden-xs">
+				<div class="leftside">			
+					<div class="highlight">
+						<h3>Category</h3>
+						<ul class="list-unstyled">
+							@foreach(var i in Model)
+							{
+								<li>								
+									<a href="@Url.ActionLink("ChangeList","Category",new{CatID=@i.CatId})">@i.CatName</a>
+								</li>
+							}												
+						</ul>
+					</div>
+					
+				</div>
+			</div>
+
+			<div class="col-sm-9">
+				@if(@ViewBag.id!=null){
+					@await Component.InvokeAsync("Product",@ViewBag.id)	
+				}else{
+					@await Component.InvokeAsync("Product",@ViewBag.id)	
+				}
+				
+			</div>
+		</div>
+	</div>
+</div>
+<!-- shop container end here -->
+
+
+

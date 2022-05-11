@@ -1,0 +1,64 @@
+﻿@model IEnumerable<BTL_TTCM.Models.OrderDetail>
+
+@{
+    ViewData["Title"] = "Order";
+    Layout = "~/Areas/Admin/Views/Shared/Layout_Admin.cshtml";
+    var subTotal = 0.0;
+}
+
+<div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Order Detail</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item active">List of order detail</li>
+                        </ol>
+
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Order detail table
+                            </div>
+                            <div class="card-body">
+                                
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>OrderID</th>
+                                            <th>ProductID</th>
+                                            <th>Quantity</th>  
+                                            <th>Price</th>          
+                                            <th>Total</th>          
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var i in Model)
+                                       {
+                                                var amout = @i.quantity*@i.price;
+                                                @subTotal += amout;
+                                                <tr>
+                                                    <td>@i.OrderId</td>
+                                                    <td>@i.ProductId</td>
+                                                    <td>@i.quantity</td>
+                                                    <td>@i.price</td>
+                                                    <td>@amout</td>
+                                                   
+                                                </tr>
+                                       }         
+                                        <tr>
+										    <td colspan="4">Sub Total</td>
+										    <td colspan="2" class="text-right" id="subTo">@subTotal</td>
+									    </tr>
+                                    </tbody>
+                                </table>
+
+                                <a href="/admin/Order/Index">
+                                    <button type="button" class="btn btn-primary">Back</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+

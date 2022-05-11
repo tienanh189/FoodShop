@@ -1,0 +1,79 @@
+﻿@using Microsoft.AspNetCore.Http
+@model IEnumerable<BTL_TTCM.Models.Product>
+
+@{
+    ViewData["Title"] = "RenderProduct";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<!-- slider start here -->
+<div class="slide"> 
+	<div class="slideshow1 owl-carousel">
+		<div class="item">
+			<img src="https://res.cloudinary.com/dzzivs123/image/upload/v1651677542/images/header3/slider_muh3ww.png" alt="banner" title="banner" class="img-fluid sliderchange"/>
+		</div>
+		<div class="item">
+			<img src="https://res.cloudinary.com/dzzivs123/image/upload/v1651677542/images/header3/slider_muh3ww.png" alt="banner" title="banner" class="img-fluid sliderchange"/>
+		</div>
+		<div class="item">
+			<img src="https://res.cloudinary.com/dzzivs123/image/upload/v1651677542/images/header3/slider_muh3ww.png" alt="banner" title="banner" class="img-fluid sliderchange"/>
+		</div>
+	</div>
+</div>
+<!-- slider end here -->
+
+<!-- product start here -->
+<div class="product">
+    <div class="container">
+        <div class="commontop text-center">
+            <h4>List products</h4>
+        </div> 
+        @*<form method="post"  asp-action="AddCart" enctype="multipart/form-data">*@
+              <div class="row">             
+                    @foreach (var i in Model)
+                    {
+                        <div class="col-md-3 col-lg-3 col-sm-4 col-xs-12">
+                                <div class="product-thumb">
+                                       <div class="image">
+                                           <a href="/Category/RenderCat">
+                                                <img src="https://res.cloudinary.com/dzzivs123/image/upload/v1651677533/images/product/@i.Image"  alt="image" title="image" class="img-fluid" />                           
+                                           </a>
+                                        <div class="onhover1">
+                                            <div class="form-group">
+                                                <input type="text" name="id" value="@i.ProductId"  id="input-fullname" class="form-control" style="opacity:0"/>
+                                            </div>
+                                            <div class="button-group">
+                                                @if (Context.Session.GetString("UserName") == null)
+                                                {
+                                                    <button class="icons" type="submit" onclick="location.href='/User/Login'">                                                      
+                                                        <i class="icon_cart_alt">                                                         
+                                                        </i>
+                                                    </button>
+                                                }else{
+                                                    <a href="@Url.ActionLink("AddCart","Home",new {id=@i.ProductId,sl=1})">
+                                                      <button class="icons" type="submit" >                                                      
+                                                        <i class="icon_cart_alt">                                                         
+                                                        </i>
+                                                    </button>
+                                                    </a>         
+                                                      
+                                                }                                              
+                                             </div>
+                                        </div>
+                                        </div>
+                                        <div class="caption text-center">
+                                               <h4><a href="/Category/RenderCat">@i.ProductName</a></h4>
+                                               <p class="price">@i.oriprice</p>
+                                        </div>
+                                </div>                    
+                        </div>                
+                    }         
+                             
+              </div>
+        @*</form>*@
+    </div>
+</div>
+<!-- product end here -->
+
+
+

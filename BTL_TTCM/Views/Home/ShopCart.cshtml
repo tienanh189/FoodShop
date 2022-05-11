@@ -1,0 +1,144 @@
+﻿@model IEnumerable<BTL_TTCM.Models.Cart>
+@{
+	ViewData["Title"] = "ShopCart";
+	Layout = "~/Views/Shared/Layout.cshtml";
+	var total = 0.0;
+	
+}
+
+<!-- checkout start here -->
+<div class="mycart">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<form method="post" enctype="multipart/form-data">
+					<div class="table-responsive">
+						<table class="table listproducts">
+							<thead>
+								<tr>
+									<td class="text-left">List Products</td>
+									<td class="text-center">Price</td>
+									<td class="text-center">Quantity(Kg)</td>
+									<td class="text-center">Total</td>
+									<td class="text-center">Delete</td>
+								</tr>
+							</thead>
+							<tbody>							
+								@if (Model.Count()>0)
+								{
+									var list = 0.0;									
+									@foreach (var i in Model)
+								   {									  
+										var amout = @i.quantity*@i.price;
+										list += amout;									
+										<tr>
+											<td class="text-left">
+												<a href="#"><img src="https://res.cloudinary.com/dzzivs123/image/upload/v1651677532/images/product/@i.Image" class="img-fluid" alt="img" title="img" /></a>
+											
+												<div class="name">@i.Name</div>
+											</td>
+											<td class="text-center" id="price" >@i.price</td>
+											<td class="text-center">
+												<p class="qtypara">
+													<a href="@Url.ActionLink("Decrease","Home",new {id=@i.CartId})">
+														<span id="minus" class="minus" onclick="Min()" ><i class="fa fa-minus"></i></span>
+													</a>													
+													<input type="text" name="quantity" value="@i.quantity" size="2" id="input-quantity" class="form-control qty" />
+													<a href="@Url.ActionLink("Increase","Home",new {id=@i.CartId})">
+														<span id="add" class="add" onclick="Add()" ><i class="fa fa-plus"></i></span>		
+													</a>
+												</p>
+											</td>
+											<td class="text-center" id="sumM" >@amout</td>
+											<td class="text-center">
+												<a href="@Url.ActionLink("DeleteCart","Home",new {id=@i.CartId})"> <button type="button"><i class="icon_close_alt2"></i></button> </a>
+											</td>
+										</tr>
+								   }	
+								   <tr>
+										<td colspan="3">Sub Total</td>
+										<td colspan="2" class="text-right" id="subTo">@list</td>
+									</tr>
+								}														
+							</tbody>
+						</table>
+					</div>
+				</form>
+			</div>
+			<div class="col-sm-12">
+				<div class="buttons">
+					<button class="btn-primary" onclick="location.href='/Home/ClearShopCart'">Clear shopping cart</button>					
+					<button class="btn-primary float-right" onclick="location.href='/Category/RenderCat'">continue shopping</button>
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<div class="row">
+					<div class="col-sm-4">
+						
+					</div>
+					<div class="col-sm-4">
+						
+					</div>
+					<div class="col-sm-4">
+						<div class="cartable">
+							<h5>Cart Total</h5>
+							<table class="table">
+								<tbody>	
+									@if(Model.Count()>0){
+																	
+										@foreach (var i in Model)
+										{
+											var amout = @i.quantity*@i.price;
+											total+= amout;
+										}
+										<tr>
+											<td class="text-left">Sub Total</td>
+											<td class="text-right" id="SUM">$ @total</td>
+										</tr>
+									}
+									else
+									{
+										<tr>
+											<td class="text-left">Sub Total</td>
+											<td class="text-right">$ 0</td>
+										</tr>
+									}
+
+								</tbody>
+							</table>
+							<div class="text-center">
+								<a href="@Url.ActionLink("CheckOut","Home")">
+									<button type="button" class="btn-primary">Proceed to Checkout</button>
+								</a>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- checkout end here -->
+<script>
+	function Min(){		
+		var price = Number(document.getElementById("price").innerHTML);
+		var sum = Number(document.getElementById("sumM").innerHTML);
+		var sumTo = Number(document.getElementById("subTo").innerHTML);
+		var newSum = sum-price;
+		document.getElementById("sumM").innerHTML=newSum.toString();
+		var newTotal = sumTo-price;
+		document.getElementById("subTo").innerHTML=newTotal.toString();
+		document.getElementById("SUM").innerHTML=newTotal.toString();
+	}
+	function Add(){		
+		var price = Number(document.getElementById("price").innerHTML);
+		var sum = Number(document.getElementById("sumM").innerHTML);
+		var sumTo = Number(document.getElementById("subTo").innerHTML);
+		var newSum = sum+price;
+		document.getElementById("sumM").innerHTML=newSum.toString();
+		var newTotal = sumTo+price;
+		document.getElementById("subTo").innerHTML=newTotal.toString();
+		document.getElementById("SUM").innerHTML=newTotal.toString();
+	}
+</script>

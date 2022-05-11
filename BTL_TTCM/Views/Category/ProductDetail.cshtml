@@ -1,0 +1,85 @@
+﻿@using Microsoft.AspNetCore.Http
+@model BTL_TTCM.Models.Product
+
+@{
+    ViewData["Title"] = "RenderProduct";
+    Layout = "~/Views/Shared/Layout.cshtml";
+	var count=0;
+}
+<!-- shop detail start here -->
+<div class="shopdetail">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 col-md-12 col-lg-12 col-xs-12">
+				<div class="row">
+					<!--thumb image code start-->
+					<div class="col-sm-4 col-md-4 col-lg-4 col-xs-12">
+						<a class="thumbnail" href="#"><img src="https://res.cloudinary.com/dzzivs123/image/upload/v1651677532/images/product/@Model.Image" title="img" alt="img" /></a>						
+					</div>
+					<!--thumb image code end-->
+				
+					<!--Product detail code start-->
+					<div class="col-sm-8 col-md-8 col-lg-8 col-xs-12">
+						<h5> <span>@Model.ProductName</span></h5>					
+						<hr>
+						<h5>Producer: <span>@Model.Producer</span></h5>					
+						<hr>
+						<h5>Supplier: <span>@Model.Supplier</span></h5>					
+						<hr>
+						<div class="price">
+							@Model.oriprice <span> $</span>
+						</div>
+						<hr>						
+						<div class="buttons">
+							@if (Context.Session.GetString("UserName") == null){
+								<a href="/User/Login">
+									<button type="button" class="btn-default"><i class="icon_cart"></i> add to cart</button>
+								</a>
+							}
+							else
+							{
+								<a href="@Url.ActionLink("AddCart","Home",new {id=@Model.ProductId,sl=1})">
+									<button type="button" class="btn-default"><i class="icon_cart"></i> add to cart</button>
+								</a>
+							}
+
+							
+							
+							<button type="button" class="btn-default"><i class="icon_heart"></i></button>							
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>					
+				<!--Product detail code end-->
+				<div class="row">
+					<div class="col-sm-12 col-md-12 col-xs-12">
+						<ul class="nav nav-tabs">
+							<li>
+								<a href="#tab-description" data-toggle="tab" class="active show">Product Description</a>
+							</li>							
+											
+						</ul>
+						<br/>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-9 col-md-9 col-lg-9 col-xs-12">
+						<div class="tab-content">
+							<div class="tab-pane active" id="tab-description">							
+								<p>@Model.Descriptions</p>
+							</div>															
+						</div>
+					</div>
+					<div class="col-sm-3 col-md-3 col-lg-3 col-xs-12">
+						<img src="https://res.cloudinary.com/dzzivs123/image/upload/v1651677525/images/banner-1_x7ufv6.png" alt="img" title="img" class="img-fluid shopbanner" />
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 commontop text-center">					
+					</div>				
+				</div>
+	</div>
+</div>
+<!-- shop end here -->
+
