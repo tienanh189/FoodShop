@@ -16,6 +16,11 @@ namespace BTL_TTCM.Controllers
         {
             db = db1;
         }
+
+        public IActionResult abc()
+        {
+            return View();
+        }
         public IActionResult Index()
         {
             IEnumerable<Product> obj = db.products;
